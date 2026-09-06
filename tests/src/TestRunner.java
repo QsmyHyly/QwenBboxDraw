@@ -45,12 +45,12 @@ public class TestRunner {
         check("default model qwen3.8-flash", ProviderConfig.DEFAULT_MODEL.equals("qwen3.8-flash"));
         check("base url dashscope", ProviderConfig.BASE_URL.equals("https://dashscope.aliyuncs.com/compatible-mode/v1"));
         check("provider id bailian", ProviderConfig.PROVIDER_ID.equals("bailian"));
-        check("default key nonempty", !ProviderConfig.DEFAULT_API_KEY.isEmpty());
+        check("default key empty (需用户填写)", ProviderConfig.DEFAULT_API_KEY.isEmpty());
     }
 
     static void testKeyIdentity() {
         check("keyIdentity empty", VisionApiClient.keyIdentity("").equals("(空)"));
-        String id = VisionApiClient.keyIdentity(ProviderConfig.DEFAULT_API_KEY);
+        String id = VisionApiClient.keyIdentity("sk-test-abcdefgh1234");
         check("keyIdentity has len tag", id.contains("字符)"));
     }
 
